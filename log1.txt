@@ -1,0 +1,9 @@
+2019-11-22 19:37:22 base.py[line:440] INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2019-11-22 19:37:22 base.py[line:881] INFO Added job "qyt_print" to job store "default"
+2019-11-22 19:37:22 base.py[line:166] INFO Scheduler started
+2019-11-22 19:37:32 base.py[line:123] INFO Running job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:37:32 CST)" (scheduled at 2019-11-22 19:37:32.127689+08:00)
+2019-11-22 19:37:32 base.py[line:144] INFO Job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:37:42 CST)" executed successfully
+2019-11-22 19:37:42 base.py[line:123] INFO Running job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:37:42 CST)" (scheduled at 2019-11-22 19:37:42.127689+08:00)
+2019-11-22 19:37:42 base.py[line:144] INFO Job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:37:52 CST)" executed successfully
+2019-11-22 19:37:52 base.py[line:123] INFO Running job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:37:52 CST)" (scheduled at 2019-11-22 19:37:52.127689+08:00)
+2019-11-22 19:37:52 base.py[line:144] INFO Job "qyt_print (trigger: interval[0:00:10], next run at: 2019-11-22 19:38:02 CST)" executed successfully

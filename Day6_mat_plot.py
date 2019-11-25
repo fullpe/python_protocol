@@ -20,7 +20,8 @@ def mat_line(cpu_usage_list):
     # 处理X轴时间格式
     import matplotlib.dates as mdate
     # ax.xaxis.set_major_formatter(mdate.DateFormatter('%Y-%m-%d %H:%M:%S')) # 设置时间标签显示格式
-    ax.xaxis.set_major_formatter(mdate.DateFormatter('%H:%M'))  # 设置时间标签显示格式
+    # ax.xaxis.set_major_formatter(mdate.DateFormatter('%H:%M'))  # 设置时间标签显示格式到分钟
+    ax.xaxis.set_major_formatter(mdate.DateFormatter('%H:%M:%S'))  # 设置时间标签显示格式到每秒钟
 
     # 处理Y轴百分比格式
     import matplotlib.ticker as mtick
@@ -35,9 +36,9 @@ def mat_line(cpu_usage_list):
         y.append(cpu)
 
     # 添加主题和注释
-    plt.title('路由器CPU利用率')
+    plt.title('路由器MEM利用率')
     plt.xlabel('采集时间')
-    plt.ylabel('CPU利用率')
+    plt.ylabel('MEM利用率')
 
     fig.autofmt_xdate()  # 当x轴太拥挤的时候可以让他自适应
 
@@ -52,6 +53,9 @@ def mat_line(cpu_usage_list):
 
     # 设置说明的位置
     ax.legend(loc='upper left')
+
+    # 限制y轴的取值范围
+    ax.set_ylim(0, 100)
 
     # 保存到图片
     plt.savefig('result1.png')
