@@ -10,7 +10,7 @@ import re
 import hashlib
 import paramiko
 import time
-import difflib import *
+from difflib import *
 
 
 # def qytang_ssh(ip, username, password, cmd='ls', port=22):
@@ -22,7 +22,7 @@ import difflib import *
 #     i = stdout.read().decode()
 #     return i
 
-def ssh_multicmd(ip, username, password, cmd_list=[], enable='enable', wait_time=3, port=22, verbose=True, timeout=10, compress=True):
+def ssh_multicmd(ip, username, password, cmd_list=['show run'], enable='enable', wait_time=3, port=22, verbose=True, timeout=10, compress=True):
     # 创建SSH Client
     ssh = paramiko.SSHClient()
     # 加载本地密钥
@@ -82,7 +82,7 @@ def ssh_multicmd(ip, username, password, cmd_list=[], enable='enable', wait_time
 
 def get_config_md5(ip, username='admin', password='admin'):
     try:
-        device_config_raw = ssh_multicmd(ip, username, password, cmd_list=['show run'])
+        device_config_raw = ssh_multicmd(ip, username, password)
         split_result = re.split(r'\r\nhostname \S+\r\n', device_config_raw)
         device_config = device_config_raw.replace(split_result[0], '').strip()
 
@@ -97,7 +97,9 @@ device_list = ['10.10.10.31']
 username = 'admin'
 password = "admin"
 
+
 def wirte_config_md5_to_db():
+
     conn = sqlite3.connect('bakconfig.db')
     cursor = conn.cursor()
     for device in device_list:
@@ -132,6 +134,14 @@ def diff_file(file1,file2):
     return return_result
 
 
+def diff_txt(txt1, txt2):
+    txt1_list = txt1.split('\r\n')
+    txt2_list = txt2.split('\r\n')
+    result = Differ().compare(txt1_list, txt2_list)
+    returun_result = '\r\n'.join(list(result))
+    return returun_result
+
+
 
 
 
@@ -146,6 +156,9 @@ if __name__ == "__main__":
     # conn.commit()
     # cursor.close()
     # conn.close()
-    wirte_config_md5_to_db()
-    # print(get_config_md5('10.10.10.31', 'admin', 'admin'))
+    # wirte_config_md5_to_db()
+    print(get_config_md5('10.10.10.31', 'admin', 'admin'))
     # print(ssh_multicmd('10.10.10.31', 'admin', 'admin', cmd_list=['show run']))
+    # txt_1 = "\r\nprint(ssh_multicmd('10.10.10.31', 'admin', 'admin', cmd_list=['show run']))\r\n\r\n(ip varchar(40), config varchar(99999), md5 varchar(1000)))"
+    # txt_2 = "\r\nprint(ssh_multicmd('10.10.10.31', 'admin', 'admin', cmd_l)\r\n\r\n(ip varchar(40), config varchar(99999), md5 varchar(1000)))"
+    # print(diff_txt(txt_1, txt_2))

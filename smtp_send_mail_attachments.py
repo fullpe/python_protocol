@@ -43,11 +43,12 @@ def qyt_smtp_attachment(mailserver, username, password, From, To, Subj, Main_Bod
 
 if __name__ == '__main__':
     # 使用Linux解释器 & WIN解释器
+    subject = f'Router device Config changed'
+    body = 'Config changes as below:\n'
     qyt_smtp_attachment('smtp.qiye.aliyun.com',
                         'system@zoosi.top',
                         'Xx123123',
                         'system@zoosi.top',
-                        'zunsi@foxmail.com;sizun@jsonmedia.com',
-                        '附件测试_主题',
-                        '附件测试_正文',
-                        ['result1.png'])
+                        'sizun@jsonmedia.com',
+                        subject,
+                        body)
